@@ -1,12 +1,15 @@
+using MvcNetCoreUtilidades.Helpers;
+
 var builder = WebApplication.CreateBuilder(args);
 
+//  RESOLVEMOS LAS DEPENDECIAS DE NUESTRO HELPER
+builder.Services.AddSingleton<HelperPathProvider>();
 //  INCLUIREMOS UN SEVICIO MEMORYCACHE
 builder.Services.AddMemoryCache();
 //  INDICAMOS QUE USAREMOS LA MEMORIA DISTRIBUIDA
 builder.Services.AddDistributedMemoryCache();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

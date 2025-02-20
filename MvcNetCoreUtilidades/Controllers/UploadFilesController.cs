@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MvcNetCoreUtilidades.Helpers;
 
 namespace MvcNetCoreUtilidades.Controllers
 {
     public class UploadFilesController : Controller
     {
-        private IWebHostEnvironment hostEnvironment;
-        public UploadFilesController(IWebHostEnvironment hostEnvironment)
+        private HelperPathProvider helperPath;
+        public UploadFilesController(HelperPathProvider helperPath)
         {
-            this.hostEnvironment = hostEnvironment;
+            this.helperPath = helperPath;
         }
 
         public IActionResult Index()
@@ -22,8 +23,8 @@ namespace MvcNetCoreUtilidades.Controllers
         public async Task<IActionResult> SubirFichero
             (IFormFile fichero)
         {
-            //  NECESITAMOS LA RUTA A NUESTRO WWROOT DEL SERVER
-            string rootFolder = this.hostEnvironment.WebRootPath;
+            ////  NECESITAMOS LA RUTA A NUESTRO WWROOT DEL SERVER
+            //string rootFolder = this.hostEnvironment.WebRootPath;
 
             //  COMENZAMOS ALMACENANDO EL FICHERO EN LOS
             //  ELEMENTOS TEMPORALES
@@ -39,7 +40,8 @@ namespace MvcNetCoreUtilidades.Controllers
             //  LAS RUTAS DE FICHEROS NO DEBO ESCRIBIRLAS, TENGO QUE GENERAR
             //  DICHAS RUTAS CON EL SISTEMA DONDE ESTOY TRABAJANDO
             //string path = Path.Combine(tempoFolder, fileName);
-            string path = Path.Combine(rootFolder, "uploads", fileName);
+            //string path = Path.Combine(rootFolder, "uploads", fileName);
+            string path = this.helperPath.MapPath(fileName, Folders.Images);
             //  PARA SUBIR EL FICHERO SE UTLIZA Stream CON IFromFile
             using (Stream stream = new FileStream(path, FileMode.Create))
             {
