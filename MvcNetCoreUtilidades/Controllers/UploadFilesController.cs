@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcNetCoreUtilidades.Helpers;
+using System.Runtime.InteropServices;
 
 namespace MvcNetCoreUtilidades.Controllers
 {
@@ -42,12 +43,14 @@ namespace MvcNetCoreUtilidades.Controllers
             //string path = Path.Combine(tempoFolder, fileName);
             //string path = Path.Combine(rootFolder, "uploads", fileName);
             string path = this.helperPath.MapPath(fileName, Folders.Images);
+            string urlPath = this.helperPath.MapUrlPath(fileName, Folders.Images);
             //  PARA SUBIR EL FICHERO SE UTLIZA Stream CON IFromFile
             using (Stream stream = new FileStream(path, FileMode.Create))
             {
                 await fichero.CopyToAsync(stream);
             }
             ViewData["MENSAJE"] = "Fichero subido a " + path;
+            ViewData["URL"] = urlPath;
             return View();
         }
     }
