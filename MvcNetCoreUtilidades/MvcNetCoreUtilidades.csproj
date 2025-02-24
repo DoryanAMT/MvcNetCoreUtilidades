@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\facturas\" />
+    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\temp\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
