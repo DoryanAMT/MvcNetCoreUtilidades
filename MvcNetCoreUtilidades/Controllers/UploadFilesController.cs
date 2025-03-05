@@ -44,7 +44,7 @@ namespace MvcNetCoreUtilidades.Controllers
             //string path = Path.Combine(rootFolder, "uploads", fileName);
             string path = this.helperPath.MapPath(fileName, Folders.Images);
             string urlPath = this.helperPath.MapUrlPath(fileName, Folders.Images);
-            //  PARA SUBIR EL FICHERO SE UTLIZA Stream CON IFromFile
+            //  PARA SUBIR EL FICHERO SE UTLIZA Stream CON IFormFile
             using (Stream stream = new FileStream(path, FileMode.Create))
             {
                 await fichero.CopyToAsync(stream);
