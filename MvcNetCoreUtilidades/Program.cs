@@ -1,8 +1,10 @@
 using MvcNetCoreUtilidades.Helpers;
+using MvcNetCoreUtilidades.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //  RESOLVEMOS LAS DEPENDECIAS DE NUESTRO HELPER
+builder.Services.AddTransient<RepositoryCoches>();
 builder.Services.AddSingleton<HelperPathProvider>();
 //  INCLUIMOS SESSION
 builder.Services.AddSession();

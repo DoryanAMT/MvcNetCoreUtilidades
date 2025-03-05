@@ -51,5 +51,11 @@ namespace MvcNetCoreUtilidades.Controllers
             Coche car = this.Cars.FirstOrDefault(x => x.IdCoche == idCoche);
             return PartialView("_DetailsCoche", car);
         }
+        public IActionResult Details
+            (int idCoche)
+        {
+            Coche coche = this.Cars.FirstOrDefault(x => x.IdCoche == idCoche);
+            return View(coche);
+        }
     }
 }
