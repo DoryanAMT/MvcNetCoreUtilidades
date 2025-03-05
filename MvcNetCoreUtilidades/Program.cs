@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 //  RESOLVEMOS LAS DEPENDECIAS DE NUESTRO HELPER
 builder.Services.AddSingleton<HelperPathProvider>();
+//  INCLUIMOS SESSION
+builder.Services.AddSession();
 //  INCLUIREMOS UN SEVICIO MEMORYCACHE
 builder.Services.AddMemoryCache();
 //  INDICAMOS QUE USAREMOS LA MEMORIA DISTRIBUIDA
@@ -33,6 +35,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+//  HABILITAMOS SESSION
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
